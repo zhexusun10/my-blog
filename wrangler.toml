@@ -1,6 +1,8 @@
 name = "my-blog"
-main = "./.next/server/app/index.js"
 compatibility_date = "2023-12-01"
 
 [site]
-bucket = "./.next/static" 
+bucket = "./out"
+
+# 添加Pages配置
+pages_build_output_dir = "./out" 

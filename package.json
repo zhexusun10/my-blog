@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npx wrangler pages deploy .next --project-name=my-blog"
+    "deploy": "npx wrangler pages deploy out --project-name=my-blog"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
