@@ -204,7 +204,7 @@ export function Carousel3D({
     }
   }
 
-  // 添加键盘导航
+  // 键盘导航
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
@@ -218,7 +218,7 @@ export function Carousel3D({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeIndex]);
+  }, [activeIndex, handlePrev, handleNext]);
 
   return (
     <div 

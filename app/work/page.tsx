@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
 import { WorkNavBar } from "@/components/ui/work-navbar";
-import { cn } from "@/lib/utils";
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
 
 // 定义导航项
 const navItems = [
@@ -36,6 +35,7 @@ export default function WorkPage() {
   const [scrolling, setScrolling] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const touchStartXRef = useRef<number | null>(null);
 
   // 处理导航点击
   const handleNavClick = (sectionId: string) => {
@@ -110,39 +110,40 @@ export default function WorkPage() {
     return () => container.removeEventListener("scroll", throttledHandleScroll);
   }, [activeSection, scrolling]);
 
-  // 添加触摸事件处理
+  // 处理触摸滑动
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartX(e.touches[0].clientX);
+      touchStartXRef.current = e.touches[0].clientX;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diffX = touchEndX - touchStartX;
+      if (!touchStartXRef.current) return;
       
-      // 如果滑动距离足够大，则切换部分
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0 && currentSectionIndex > 0) {
-          // 向右滑动，切换到上一个部分
-          handleNavClick(navItems[currentSectionIndex - 1].url.replace('#', ''));
-        } else if (diffX < 0 && currentSectionIndex < navItems.length - 1) {
-          // 向左滑动，切换到下一个部分
-          handleNavClick(navItems[currentSectionIndex + 1].url.replace('#', ''));
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartXRef.current - touchEndX;
+      
+      // 向左滑动 (diff > 0) 显示下一个部分
+      // 向右滑动 (diff < 0) 显示上一个部分
+      if (Math.abs(diff) > 50) { // 最小滑动距离
+        const currentIndex = navItems.findIndex(item => item.name === activeSection);
+        if (diff > 0 && currentIndex < navItems.length - 1) {
+          handleNavClick(navItems[currentIndex + 1].url.replace('#', ''));
+        } else if (diff < 0 && currentIndex > 0) {
+          handleNavClick(navItems[currentIndex - 1].url.replace('#', ''));
         }
       }
+      
+      touchStartXRef.current = null;
     };
 
-    container.addEventListener('touchstart', handleTouchStart);
-    container.addEventListener('touchend', handleTouchEnd);
-
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchend', handleTouchEnd);
+    
     return () => {
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [currentSectionIndex]);
+  }, [activeSection, handleNavClick, touchStartXRef]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">

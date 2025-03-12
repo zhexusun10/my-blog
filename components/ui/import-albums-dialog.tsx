@@ -66,7 +66,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
       try {
         const content = event.target?.result as string;
         setJsonData(content);
-      } catch (err) {
+      } catch (_) {
         setError("无法读取文件内容");
       }
     };
@@ -128,7 +128,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
           }
 
           albumsToImport = parsedData as Album[];
-        } catch (err: unknown) {
+        } catch (_) {
           setError("JSON格式错误");
           setIsLoading(false);
           return;
@@ -145,7 +145,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
         setFormData([{ image: "", title: "", artist: "" }]);
         setJsonData("");
       }, 1000);
-    } catch (err: unknown) {
+    } catch (_) {
       setError("导入过程中出错");
       setIsLoading(false);
     }
