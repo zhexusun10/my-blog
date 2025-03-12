@@ -1,5 +1,6 @@
 name = "my-blog"
 compatibility_date = "2023-12-01"
+main = "workers-site/index.js"
 
 [site]
 bucket = "./out"
