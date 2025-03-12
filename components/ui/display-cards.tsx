@@ -10,6 +10,7 @@ interface DisplayCardProps {
   title?: ReactNode;
   description?: string;
   date?: string;
+  iconClassName?: string;
   titleClassName?: string;
   children?: ReactNode;
 }
@@ -20,6 +21,7 @@ function DisplayCard({
   title = "Featured",
   description = "Discover amazing content",
   date = "Just now",
+  iconClassName = "text-blue-500",
   titleClassName = "text-blue-500",
   children,
 }: DisplayCardProps) {

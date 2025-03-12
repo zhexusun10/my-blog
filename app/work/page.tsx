@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
 import { WorkNavBar } from "@/components/ui/work-navbar";
+import { cn } from "@/lib/utils";
 
 // 定义导航项
 const navItems = [

@@ -26,6 +26,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
   const [activeTab, setActiveTab] = useState("form");
   const [formData, setFormData] = useState<Album[]>([{ image: "", title: "", artist: "" }]);
   const [jsonData, setJsonData] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   // 处理表单输入变化
@@ -51,10 +52,12 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
 
   // 处理文件上传
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError("");
     const file = e.target.files?.[0];
     if (!file) return;
 
     if (file.type !== "application/json") {
+      setError("请上传JSON格式的文件");
       return;
     }
 
@@ -64,11 +67,11 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
         const content = event.target?.result as string;
         setJsonData(content);
       } catch (err) {
-        return;
+        setError("无法读取文件内容");
       }
     };
     reader.onerror = () => {
-      return;
+      setError("读取文件时出错");
     };
     reader.readAsText(file);
   };
@@ -76,10 +79,12 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
   // 处理JSON文本输入变化
   const handleJsonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJsonData(e.target.value);
+    setError("");
   };
 
   // 验证并导入专辑
   const handleImport = () => {
+    setError("");
     setIsLoading(true);
 
     try {
@@ -89,6 +94,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
         // 验证表单数据
         const invalidIndex = formData.findIndex(album => !album.image || !album.title || !album.artist);
         if (invalidIndex !== -1) {
+          setError(`第 ${invalidIndex + 1} 个专辑信息不完整`);
           setIsLoading(false);
           return;
         }
@@ -96,6 +102,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
       } else {
         // 验证JSON数据
         if (!jsonData.trim()) {
+          setError("请输入或上传JSON数据");
           setIsLoading(false);
           return;
         }
@@ -104,6 +111,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
           const parsedData = JSON.parse(jsonData);
           
           if (!Array.isArray(parsedData)) {
+            setError("JSON数据必须是数组格式");
             setIsLoading(false);
             return;
           }
@@ -114,12 +122,14 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
           );
 
           if (invalidItem !== -1) {
+            setError(`第 ${invalidItem + 1} 个专辑信息不完整`);
             setIsLoading(false);
             return;
           }
 
           albumsToImport = parsedData;
         } catch (err) {
+          setError("JSON格式错误");
           setIsLoading(false);
           return;
         }
@@ -136,6 +146,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
         setJsonData("");
       }, 1000);
     } catch (err) {
+      setError("导入过程中出错");
       setIsLoading(false);
     }
   };
@@ -268,6 +279,13 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
             </div>
           </TabsContent>
         </Tabs>
+
+        {error && (
+          <Alert variant="destructive" className="mt-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
 
         <DialogFooter className="mt-4">
           <Button variant="outline" onClick={() => setOpen(false)}>
