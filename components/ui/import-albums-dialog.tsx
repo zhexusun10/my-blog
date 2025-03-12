@@ -118,7 +118,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
 
           // 验证每个专辑对象
           const invalidItem = parsedData.findIndex(
-            (item: any) => !item.image || !item.title || !item.artist
+            (item: Album) => !item.image || !item.title || !item.artist
           );
 
           if (invalidItem !== -1) {
@@ -127,8 +127,8 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
             return;
           }
 
-          albumsToImport = parsedData;
-        } catch (err) {
+          albumsToImport = parsedData as Album[];
+        } catch (err: unknown) {
           setError("JSON格式错误");
           setIsLoading(false);
           return;
@@ -145,7 +145,7 @@ export function ImportAlbumsDialog({ onImport }: ImportAlbumsDialogProps) {
         setFormData([{ image: "", title: "", artist: "" }]);
         setJsonData("");
       }, 1000);
-    } catch (err) {
+    } catch (err: unknown) {
       setError("导入过程中出错");
       setIsLoading(false);
     }

@@ -50,7 +50,6 @@ export default function Home() {
                   title: "Game",
                   description: "",
                   date: "",
-                  iconClassName: "text-red-500",
                   titleClassName: "text-red-500",
                   className: "relative [grid-area:stack] translate-x-0 translate-y-0 hover:translate-x-0 hover:-translate-y-12 transition-transform duration-500 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
                   children: <CardWrapper href="/game" />
@@ -60,7 +59,6 @@ export default function Home() {
                   title: "Music",
                   description: "",
                   date: "",
-                  iconClassName: "text-purple-500",
                   titleClassName: "text-purple-500",
                   className: "relative [grid-area:stack] translate-x-16 translate-y-0 hover:translate-x-16 hover:-translate-y-12 transition-transform duration-500 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
                   children: <CardWrapper href="/music" />

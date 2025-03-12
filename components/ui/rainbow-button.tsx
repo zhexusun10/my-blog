@@ -1,14 +1,12 @@
 import React from "react";
 
 import { cn } from "@/lib/utils";
-interface RainbowButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export function RainbowButton({
   children,
   className,
   ...props
-}: RainbowButtonProps) {
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   // 定义彩虹按钮的颜色
   const style = {
     "--color-1": "0, 100%, 50%", // 红色
