@@ -218,7 +218,7 @@ export function Carousel3D({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeIndex]);
+  }, [handleNext, handlePrev]);
 
   return (
     <div 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image';
 
 export default function TaylorSwiftPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -47,9 +48,11 @@ export default function TaylorSwiftPage() {
                 className="h-[350px] w-full rounded-[4px] overflow-hidden mb-4 cursor-pointer"
                 onClick={() => handleImageClick(image)}
               >
-                <img 
+                <Image 
                   src={image} 
                   alt={`Portrait ${index * 2 + 1}`} 
+                  width={300}
+                  height={350}
                   className="w-full h-full object-cover taylor-image"
                 />
               </div>
@@ -65,9 +68,11 @@ export default function TaylorSwiftPage() {
                 className="h-[350px] w-full rounded-[4px] overflow-hidden mb-4 cursor-pointer"
                 onClick={() => handleImageClick(image)}
               >
-                <img 
+                <Image 
                   src={image} 
                   alt={`Portrait ${index * 2 + 2}`} 
+                  width={300}
+                  height={350}
                   className="w-full h-full object-cover taylor-image"
                 />
               </div>
@@ -105,9 +110,11 @@ export default function TaylorSwiftPage() {
               className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
+              <Image 
                 src={selectedImage} 
                 alt="Enlarged portrait" 
+                width={500}
+                height={500}
                 className="max-w-full max-h-[85vh] object-contain"
               />
               <button 
