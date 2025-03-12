@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import {  useLayoutEffect } from "react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -180,15 +180,15 @@ export function Carousel3D({
   }, [isAutoPlaying, totalItems, rotateInterval])
 
   // 处理手动导航
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setIsAutoPlaying(false)
     setActiveIndex((prev) => (prev - 1 + totalItems) % totalItems)
-  }
+  }, [totalItems])
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setIsAutoPlaying(false)
     setActiveIndex((prev) => (prev + 1) % totalItems)
-  }
+  }, [totalItems])
 
   // 鼠标悬停时暂停自动轮播
   const handleMouseEnter = () => {

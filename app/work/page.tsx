@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { WorkNavBar } from "@/components/ui/work-navbar";
-import { NavBar } from "@/components/ui/tubelight-navbar";
 import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
 
 // 定义导航项
@@ -33,12 +32,10 @@ export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("About");
   const [scrolling, setScrolling] = useState(false);
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const touchStartXRef = useRef<number | null>(null);
 
   // 处理导航点击
-  const handleNavClick = (sectionId: string) => {
+  const handleNavClick = useCallback((sectionId: string) => {
     if (scrolling) return;
     
     setScrolling(true);
@@ -46,8 +43,6 @@ export default function WorkPage() {
     // 找到对应的部分索引
     const sectionIndex = navItems.findIndex(item => item.url === `#${sectionId}`);
     if (sectionIndex === -1) return;
-    
-    setCurrentSectionIndex(sectionIndex);
     
     // 计算滚动位置
     if (containerRef.current) {
@@ -68,7 +63,7 @@ export default function WorkPage() {
         setScrolling(false);
       }, 400);
     }
-  };
+  }, [scrolling]);
 
   // 监听滚动事件，更新活动部分
   useEffect(() => {
@@ -89,7 +84,6 @@ export default function WorkPage() {
         
         if (activeSection !== sectionName) {
           setActiveSection(sectionName);
-          setCurrentSectionIndex(sectionIndex);
         }
       }
     };

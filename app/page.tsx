@@ -1,4 +1,3 @@
-import { Particles } from "@/components/ui/particles";
 import DisplayCards from "@/components/ui/display-cards";
 import { Music, Gamepad2, Briefcase } from "lucide-react";
 import { TypingAnimation } from "@/components/ui/typing-animation";
@@ -15,18 +14,7 @@ const CardWrapper = ({ href }: { href: string }) => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative">
-      {/* 背景 Particles */}
-      <div className="absolute inset-0 -z-10">
-        <Particles 
-          className="absolute inset-0"
-          quantity={600}
-          staticity={50}
-          color="#000000"
-          ease={10}
-        />
-      </div>
-      
+    <div className="min-h-screen relative bg-background">
       {/* 主要内容 */}
       <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
         <header className="mb-24 text-center">
@@ -68,7 +56,6 @@ export default function Home() {
                   title: "Work",
                   description: "",
                   date: "",
-                  iconClassName: "text-emerald-500",
                   titleClassName: "text-emerald-500",
                   className: "relative [grid-area:stack] translate-x-32 translate-y-0 hover:translate-x-32 hover:-translate-y-12 transition-transform duration-500 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
                   children: <CardWrapper href="/work" />
