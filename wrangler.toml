@@ -1,0 +1,6 @@
+name = "my-blog"
+main = "./.next/server/app/index.js"
+compatibility_date = "2023-12-01"
+
+[site]
+bucket = "./.next/static" 
