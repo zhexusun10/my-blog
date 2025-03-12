@@ -1,6 +1,6 @@
 import { Particles } from "@/components/ui/particles";
 import DisplayCards from "@/components/ui/display-cards";
-import { Code, Music, Gamepad2, Briefcase } from "lucide-react";
+import { Music, Gamepad2, Briefcase } from "lucide-react";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import Link from "next/link";
 

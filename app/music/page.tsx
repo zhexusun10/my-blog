@@ -133,7 +133,6 @@ const initialAlbums = [
 
 export default function MusicPage() {
   const [showSubtitle, setShowSubtitle] = useState(false);
-  const [albums, setAlbums] = useState(initialAlbums);
   const router = useRouter();
 
   useEffect(() => {
@@ -178,7 +177,7 @@ export default function MusicPage() {
         </header>
         
         <main className="w-full max-w-6xl mx-auto flex-grow">
-          <Carousel3D items={albums} />
+          <Carousel3D items={initialAlbums} />
           <div className="text-center mt-8">
             <p 
               className="text-sm text-black font-light italic transition-all duration-300 hover:text-gray-400 hover:shadow-glow cursor-pointer" 

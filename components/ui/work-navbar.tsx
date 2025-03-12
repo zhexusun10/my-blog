@@ -19,11 +19,9 @@ interface WorkNavBarProps {
 }
 
 export function WorkNavBar({ items, className, onNavClick, activeSection }: WorkNavBarProps) {
-  const [isMobile, setIsMobile] = useState(false)
-
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
+      // No need to update isMobile state as it's not used in the component
     }
 
     handleResize()
