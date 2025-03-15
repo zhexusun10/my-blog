@@ -21,7 +21,7 @@ export default function Home() {
           <div className="animate-float">
             <h1 className="text-7xl md:text-9xl font-bold drop-shadow-md">
               <TypingAnimation 
-                text="Zhexu's Blog" 
+                text="Zhexu's Page" 
                 duration={150}
                 cursorBlinkSpeed={1200}
               />

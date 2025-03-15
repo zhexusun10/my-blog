@@ -81,7 +81,27 @@ module.exports = {
         "float": "float 6s ease-in-out infinite",
         "rainbow": "rainbow 6s linear infinite",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100%', // 确保宽度可以撑满容器
+            img: {
+              marginTop: '2em',
+              marginBottom: '2em',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 } 

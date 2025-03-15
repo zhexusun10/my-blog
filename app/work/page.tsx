@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { WorkNavBar } from "@/components/ui/work-navbar";
 import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
+import Link from "next/link";
 
 // 定义导航项
 const navItems = [
@@ -159,7 +160,7 @@ export default function WorkPage() {
         >
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">About Me</h2>
-            <p className="text-xl max-w-2xl text-center">
+            <p className="text-xl max-w-2xl text-center mb-8">
               这里是关于我的个人介绍，包括我的背景、兴趣和专业领域。
             </p>
             {/* 这里可以添加个人简介和照片 */}
@@ -201,7 +202,7 @@ export default function WorkPage() {
         >
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">Resume</h2>
-            <p className="text-xl max-w-2xl text-center">
+            <p className="text-xl max-w-2xl text-center mb-8">
               我的教育背景、工作经验和专业技能。
             </p>
             {/* 这里可以添加简历内容 */}
@@ -216,10 +217,18 @@ export default function WorkPage() {
         >
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">Ideas</h2>
-            <p className="text-xl max-w-2xl text-center">
+            <p className="text-xl max-w-2xl text-center mb-8">
               我的创意想法和概念，包括未来项目和实验性作品。
             </p>
-            {/* 这里可以添加创意想法展示 */}
+            
+            {/* 博客链接按钮 */}
+            <Link 
+              href="/work/idea" 
+              className="flex items-center justify-center gap-2 bg-[#24292e] hover:bg-[#1b1f23] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 mt-4"
+            >
+              <Lightbulb className="w-6 h-6" />
+              <span>Visit My Blog</span>
+            </Link>
           </div>
         </section>
       </div>

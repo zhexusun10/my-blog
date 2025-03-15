@@ -87,8 +87,8 @@ export default function TaylorSwiftPage() {
         <h2 className="text-2xl font-bold mb-1" style={{ fontFamily: 'Taylor' }}>
           Taylor Swift
         </h2>
-        <Link href="/music" className="text-sm text-gray-400 hover:text-black transition-colors">
-          Back to Albums
+        <Link href="/" className="text-sm text-black hover:text-gray-600 transition-colors">
+          Back to Home
         </Link>
       </div>
 
