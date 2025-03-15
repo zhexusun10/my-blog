@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 export const dynamic = 'force-static';
 
 // 为静态导出生成所有可能的路径参数
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return blogPosts.map(post => ({
     slug: post.slug,
   }));
@@ -25,8 +25,15 @@ function formatDate(dateString: string) {
   });
 }
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 // 文章详情页组件
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params, searchParams }: PageProps) {
   const post = getBlogPostBySlug(params.slug);
 
   // 如果文章不存在，显示错误信息
