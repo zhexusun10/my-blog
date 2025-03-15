@@ -2,6 +2,7 @@ import { getBlogPostBySlug, blogPosts } from '../data';
 import ReactMarkdown from 'react-markdown';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import GiscusComments from './giscus-comments';
 import { cn } from '@/lib/utils';
 
@@ -77,11 +78,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* 封面图片 */}
             {post.coverImage && (
-              <div className="w-full h-72 md:h-96 rounded-lg overflow-hidden mb-8">
-                <img 
+              <div className="w-full h-72 md:h-96 rounded-lg overflow-hidden mb-8 relative">
+                <Image 
                   src={post.coverImage} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover"
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             )}

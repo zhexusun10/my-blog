@@ -1,6 +1,7 @@
 import { VerifiedIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ReplyProps {
     authorName: string;
@@ -61,11 +62,13 @@ function XCard({
         >
             <div className="flex gap-3">
                 <div className="flex-shrink-0">
-                    <div className="h-10 w-10 rounded-full overflow-hidden">
-                        <img
+                    <div className="h-10 w-10 rounded-full overflow-hidden relative">
+                        <Image
                             src={authorImage}
                             alt={authorName}
-                            className="h-full w-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="40px"
                         />
                     </div>
                 </div>
@@ -126,11 +129,13 @@ function XCard({
                 <div className="mt-4 pt-4 border-t border-black/[0.08] dark:border-white/[0.08]">
                     <div className="flex gap-3">
                         <div className="flex-shrink-0">
-                            <div className="h-10 w-10 rounded-full overflow-hidden">
-                                <img
+                            <div className="h-10 w-10 rounded-full overflow-hidden relative">
+                                <Image
                                     src={reply.authorImage}
                                     alt={reply.authorName}
-                                    className="h-full w-full object-cover"
+                                    fill
+                                    className="object-cover"
+                                    sizes="40px"
                                 />
                             </div>
                         </div>
@@ -184,6 +189,5 @@ function XCard({
         </div>
     );
 }
-
 
 export { XCard }
