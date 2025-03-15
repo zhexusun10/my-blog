@@ -29,11 +29,10 @@ interface PageProps {
   params: {
     slug: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 // 文章详情页组件
-export default function BlogPostPage({ params, searchParams }: PageProps) {
+export default function BlogPostPage({ params }: PageProps) {
   const post = getBlogPostBySlug(params.slug);
 
   // 如果文章不存在，显示错误信息
