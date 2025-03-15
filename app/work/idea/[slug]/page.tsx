@@ -25,15 +25,12 @@ function formatDate(dateString: string) {
   });
 }
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
 // 文章详情页组件
-export default function BlogPostPage({ params }: PageProps) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage(props: { 
+  params: Promise<{ slug: string }> 
+}) {
+  const { slug } = await props.params;
+  const post = getBlogPostBySlug(slug);
 
   // 如果文章不存在，显示错误信息
   if (!post) {
