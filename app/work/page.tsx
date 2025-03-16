@@ -4,8 +4,9 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { WorkNavBar } from "@/components/ui/work-navbar";
 import { FileText, Briefcase, User, Lightbulb, Github } from "lucide-react";
 import Link from "next/link";
+import { IconCloud } from "@/components/ui/interactive-icon-cloud";
 
-// 定义导航项
+// Define navigation items
 const navItems = [
   {
     name: "About",
@@ -13,14 +14,14 @@ const navItems = [
     icon: User,
   },
   {
+    name: "Skills",
+    url: "#skills",
+    icon: FileText,
+  },
+  {
     name: "Project",
     url: "#project",
     icon: Briefcase,
-  },
-  {
-    name: "Resume",
-    url: "#resume",
-    icon: FileText,
   },
   {
     name: "Ideas",
@@ -29,44 +30,52 @@ const navItems = [
   },
 ];
 
+// Define skill icons
+const skillIcons = [
+  "react", "nextdotjs", "typescript", "javascript", "html5", "css3", 
+  "tailwindcss", "nodedotjs", "express", "mongodb", "mysql", "postgresql",
+  "git", "github", "docker", "aws", "vercel", "firebase", 
+  "redux", "graphql", "jest", "figma", "adobephotoshop", "adobeillustrator"
+];
+
 export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("About");
   const [scrolling, setScrolling] = useState(false);
   const touchStartXRef = useRef<number | null>(null);
 
-  // 处理导航点击
+  // Handle navigation click
   const handleNavClick = useCallback((sectionId: string) => {
     if (scrolling) return;
     
     setScrolling(true);
     
-    // 找到对应的部分索引
+    // Find the corresponding section index
     const sectionIndex = navItems.findIndex(item => item.url === `#${sectionId}`);
     if (sectionIndex === -1) return;
     
-    // 计算滚动位置
+    // Calculate scroll position
     if (containerRef.current) {
       const containerWidth = containerRef.current.clientWidth;
       const scrollLeft = sectionIndex * containerWidth;
       
-      // 使用 scrollTo 进行平滑滚动
+      // Use scrollTo for smooth scrolling
       containerRef.current.scrollTo({
         left: scrollLeft,
         behavior: "smooth",
       });
       
-      // 更新活动部分
+      // Update active section
       setActiveSection(navItems[sectionIndex].name);
       
-      // 滚动完成后重置滚动状态
+      // Reset scrolling state after completion
       setTimeout(() => {
         setScrolling(false);
       }, 400);
     }
   }, [scrolling]);
 
-  // 监听滚动事件，更新活动部分
+  // Listen for scroll events to update active section
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -77,7 +86,7 @@ export default function WorkPage() {
       const scrollPosition = container.scrollLeft;
       const containerWidth = container.clientWidth;
       
-      // 计算当前活动部分
+      // Calculate current active section
       const sectionIndex = Math.round(scrollPosition / containerWidth);
       
       if (sectionIndex >= 0 && sectionIndex < navItems.length) {
@@ -89,7 +98,7 @@ export default function WorkPage() {
       }
     };
 
-    // 使用 throttle 减少滚动事件触发频率
+    // Use throttle to reduce scroll event frequency
     let ticking = false;
     const throttledHandleScroll = () => {
       if (!ticking) {
@@ -105,7 +114,7 @@ export default function WorkPage() {
     return () => container.removeEventListener("scroll", throttledHandleScroll);
   }, [activeSection, scrolling]);
 
-  // 处理触摸滑动
+  // Handle touch swipe
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartXRef.current = e.touches[0].clientX;
@@ -117,9 +126,9 @@ export default function WorkPage() {
       const touchEndX = e.changedTouches[0].clientX;
       const diff = touchStartXRef.current - touchEndX;
       
-      // 向左滑动 (diff > 0) 显示下一个部分
-      // 向右滑动 (diff < 0) 显示上一个部分
-      if (Math.abs(diff) > 50) { // 最小滑动距离
+      // Swipe left (diff > 0) shows next section
+      // Swipe right (diff < 0) shows previous section
+      if (Math.abs(diff) > 50) { // Minimum swipe distance
         const currentIndex = navItems.findIndex(item => item.name === activeSection);
         if (diff > 0 && currentIndex < navItems.length - 1) {
           handleNavClick(navItems[currentIndex + 1].url.replace('#', ''));
@@ -142,7 +151,7 @@ export default function WorkPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
-      {/* 水平滚动容器 */}
+      {/* Horizontal scroll container */}
       <div 
         ref={containerRef}
         className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
@@ -152,7 +161,7 @@ export default function WorkPage() {
           scrollSnapType: "x mandatory"
         }}
       >
-        {/* About部分 */}
+        {/* About section */}
         <section 
           id="about" 
           className="flex-shrink-0 w-full h-full snap-center"
@@ -161,13 +170,55 @@ export default function WorkPage() {
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">About Me</h2>
             <p className="text-xl max-w-2xl text-center mb-8">
-              这里是关于我的个人介绍，包括我的背景、兴趣和专业领域。
+              This is my personal introduction, including my background, interests, and professional areas.
             </p>
-            {/* 这里可以添加个人简介和照片 */}
+            {/* Add personal bio and photo here */}
           </div>
         </section>
 
-        {/* Project部分 */}
+        {/* Skills section */}
+        <section 
+          id="skills" 
+          className="flex-shrink-0 w-full h-full snap-center"
+          style={{ scrollSnapAlign: "center" }}
+        >
+          <div className="flex flex-col md:flex-row items-center justify-center w-full h-full p-8">
+            {/* Left side icon cloud */}
+            <div className="w-full md:w-1/2 h-full flex items-center justify-center">
+              <div className="w-full h-[500px] relative">
+                <IconCloud iconSlugs={skillIcons} />
+              </div>
+            </div>
+            
+            {/* Right side skills description */}
+            <div className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-center">
+              <h2 className="text-4xl font-bold mb-8">Skills</h2>
+              <p className="text-xl max-w-2xl text-center md:text-left mb-8">
+                My professional skills and abilities. I am proficient in both frontend and backend development technologies, including React, Next.js, TypeScript, and other modern web technology stacks.
+              </p>
+              <div className="grid grid-cols-2 gap-4 w-full max-w-md">
+                <div className="bg-muted p-4 rounded-lg">
+                  <h3 className="font-bold mb-2">Frontend Development</h3>
+                  <p>React, Next.js, TypeScript, Tailwind CSS</p>
+                </div>
+                <div className="bg-muted p-4 rounded-lg">
+                  <h3 className="font-bold mb-2">Backend Development</h3>
+                  <p>Node.js, Express, MongoDB, PostgreSQL</p>
+                </div>
+                <div className="bg-muted p-4 rounded-lg">
+                  <h3 className="font-bold mb-2">Development Tools</h3>
+                  <p>Git, Docker, AWS, Vercel</p>
+                </div>
+                <div className="bg-muted p-4 rounded-lg">
+                  <h3 className="font-bold mb-2">Design Skills</h3>
+                  <p>Figma, Photoshop, Illustrator</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Project section */}
         <section 
           id="project" 
           className="flex-shrink-0 w-full h-full snap-center"
@@ -176,10 +227,10 @@ export default function WorkPage() {
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">My Projects</h2>
             <p className="text-xl max-w-2xl text-center mb-8">
-              这里展示我的项目作品集，包括网站开发、应用程序和其他创意项目。
+              Here I showcase my project portfolio, including website development, applications, and other creative projects.
             </p>
             
-            {/* GitHub链接按钮 */}
+            {/* GitHub link button */}
             <a 
               href="https://github.com/zhexusun10" 
               target="_blank" 
@@ -190,26 +241,11 @@ export default function WorkPage() {
               <span>Visit My GitHub</span>
             </a>
             
-            {/* 这里可以添加项目卡片或列表 */}
+            {/* Add project cards or list here */}
           </div>
         </section>
 
-        {/* Resume部分 */}
-        <section 
-          id="resume" 
-          className="flex-shrink-0 w-full h-full snap-center"
-          style={{ scrollSnapAlign: "center" }}
-        >
-          <div className="flex flex-col items-center justify-center w-full h-full p-8">
-            <h2 className="text-4xl font-bold mb-8">Resume</h2>
-            <p className="text-xl max-w-2xl text-center mb-8">
-              我的教育背景、工作经验和专业技能。
-            </p>
-            {/* 这里可以添加简历内容 */}
-          </div>
-        </section>
-
-        {/* Ideas部分 */}
+        {/* Ideas section */}
         <section 
           id="ideas" 
           className="flex-shrink-0 w-full h-full snap-center"
@@ -218,22 +254,22 @@ export default function WorkPage() {
           <div className="flex flex-col items-center justify-center w-full h-full p-8">
             <h2 className="text-4xl font-bold mb-8">Ideas</h2>
             <p className="text-xl max-w-2xl text-center mb-8">
-              我的创意想法和概念，包括未来项目和实验性作品。
+              My creative ideas and concepts, including future projects and experimental works.
             </p>
             
-            {/* 博客链接按钮 */}
+            {/* Blog link button */}
             <Link 
               href="/work/idea" 
               className="flex items-center justify-center gap-2 bg-[#24292e] hover:bg-[#1b1f23] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 mt-4"
             >
               <Lightbulb className="w-6 h-6" />
-              <span>Visit My Blog</span>
+              <span>Visit My Ideas</span>
             </Link>
           </div>
         </section>
       </div>
 
-      {/* 导航栏 */}
+      {/* Navigation bar */}
       <WorkNavBar 
         items={navItems} 
         className="bottom-8"
@@ -241,7 +277,7 @@ export default function WorkPage() {
         activeSection={activeSection}
       />
 
-      {/* 添加自定义滚动样式 */}
+      {/* Add custom scroll styles */}
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;

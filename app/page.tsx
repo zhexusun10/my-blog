@@ -2,6 +2,7 @@ import DisplayCards from "@/components/ui/display-cards";
 import { Music, Gamepad2, Briefcase } from "lucide-react";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import Link from "next/link";
+import { RetroGrid } from "@/components/ui/retro-grid";
 
 // 创建一个包装组件，使整个卡片可点击
 const CardWrapper = ({ href }: { href: string }) => {
@@ -15,8 +16,11 @@ const CardWrapper = ({ href }: { href: string }) => {
 export default function Home() {
   return (
     <div className="min-h-screen relative bg-background">
+      {/* RetroGrid背景 */}
+      <RetroGrid className="opacity-30" />
+      
       {/* 主要内容 */}
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen relative z-10">
         <header className="mb-24 text-center">
           <div className="animate-float">
             <h1 className="text-7xl md:text-9xl font-bold drop-shadow-md">

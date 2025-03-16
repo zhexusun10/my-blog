@@ -13,23 +13,23 @@ export default function ProfileCard() {
         "h-full"
       )}
     >
-      <h2 className="text-2xl font-bold mb-4">关于我</h2>
+      <h2 className="text-2xl font-bold mb-4">About Me</h2>
       
       <div className="space-y-4">
         <p>
-          你好！我是一名热爱技术和创新的开发者。这里是我的个人博客，我会分享我的想法、项目和技术文章。
+          Hello! I am a developer passionate about technology and innovation. This is my personal blog where I share my ideas, projects, and technical articles.
         </p>
         
         <p>
-          我专注于Web开发、人工智能和开源项目。我相信技术可以改变世界，而分享知识是推动这种变革的关键。
+          I focus on Web development, artificial intelligence, and open-source projects. I believe technology can change the world, and sharing knowledge is key to driving this change.
         </p>
         
         <p>
-          在这个博客中，你可以找到我的技术文章、项目展示和一些随想。希望这些内容能够对你有所帮助或启发。
+          In this blog, you can find my technical articles, project showcases, and some random thoughts. I hope these contents can be helpful or inspiring to you.
         </p>
         
         <div className="pt-4 border-t border-black/[0.08] dark:border-white/[0.08]">
-          <h3 className="text-lg font-semibold mb-2">联系我</h3>
+          <h3 className="text-lg font-semibold mb-2">Contact Me</h3>
           <div className="flex space-x-4">
             <a href="#" className="text-black-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">
               GitHub

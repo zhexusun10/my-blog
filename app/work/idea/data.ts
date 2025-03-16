@@ -1,28 +1,28 @@
 import { BlogPost } from './types';
 
-// 模拟的博客文章数据
+// Blog post data
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
     slug: 'getting-started-with-next-js',
-    title: '开始使用 Next.js 开发',
-    description: '本文介绍了如何使用 Next.js 框架开始构建现代化的 React 应用程序。',
+    title: 'Getting Started with Next.js',
+    description: 'This article introduces how to start building modern React applications with the Next.js framework.',
     content: `
-# 开始使用 Next.js 开发
+# Getting Started with Next.js
 
-Next.js 是一个基于 React 的全栈框架，它使构建高性能的 Web 应用程序变得简单。
+Next.js is a full-stack framework based on React that makes building high-performance web applications simple.
 
-## 为什么选择 Next.js?
+## Why Choose Next.js?
 
-1. **服务器端渲染** - 提高首屏加载速度和 SEO 友好性
-2. **自动代码分割** - 只加载当前页面所需的 JavaScript
-3. **内置 API 路由** - 轻松创建 API 端点
-4. **简单的数据获取方法** - 支持多种数据获取策略
-5. **优化图片处理** - 内置的图像优化组件
+1. **Server-side Rendering** - Improves first-screen loading speed and SEO friendliness
+2. **Automatic Code Splitting** - Only loads JavaScript needed for the current page
+3. **Built-in API Routes** - Easily create API endpoints
+4. **Simple Data Fetching Methods** - Supports multiple data fetching strategies
+5. **Optimized Image Processing** - Built-in image optimization component
 
-## 快速开始
+## Quick Start
 
-创建一个新的 Next.js 应用程序：
+Create a new Next.js application:
 
 \`\`\`bash
 npx create-next-app@latest my-app
@@ -30,41 +30,41 @@ cd my-app
 npm run dev
 \`\`\`
 
-现在你可以在浏览器中访问 http://localhost:3000 查看你的应用。
+Now you can visit http://localhost:3000 in your browser to view your application.
 
-## 项目结构
+## Project Structure
 
-Next.js 项目的基本结构如下：
+The basic structure of a Next.js project is as follows:
 
 \`\`\`
 my-app/
-  ├── app/          # 应用目录 (Next.js 13+)
-  ├── public/       # 静态文件目录
-  ├── components/   # React 组件
-  ├── lib/          # 工具函数和库
-  ├── package.json  # 项目依赖
-  └── next.config.js # Next.js 配置文件
+  ├── app/          # Application directory (Next.js 13+)
+  ├── public/       # Static files directory
+  ├── components/   # React components
+  ├── lib/          # Utility functions and libraries
+  ├── package.json  # Project dependencies
+  └── next.config.js # Next.js configuration file
 \`\`\`
 
-## 页面路由
+## Page Routing
 
-Next.js 13+ 使用基于文件系统的路由：
+Next.js 13+ uses file-system based routing:
 
 \`\`\`jsx
-// app/page.tsx - 主页
+// app/page.tsx - Home page
 export default function Home() {
-  return <h1>欢迎来到 Next.js!</h1>;
+  return <h1>Welcome to Next.js!</h1>;
 }
 
-// app/about/page.tsx - 关于页面
+// app/about/page.tsx - About page
 export default function About() {
-  return <h1>关于我们</h1>;
+  return <h1>About Us</h1>;
 }
 \`\`\`
 
-## 数据获取
+## Data Fetching
 
-Next.js 提供了几种数据获取方法：
+Next.js provides several methods for data fetching:
 
 \`\`\`jsx
 // app/blog/page.tsx
@@ -81,7 +81,7 @@ export default async function BlogPage() {
   
   return (
     <main>
-      <h1>博客文章</h1>
+      <h1>Blog Posts</h1>
       <ul>
         {data.map((post) => (
           <li key={post.id}>{post.title}</li>
@@ -92,28 +92,28 @@ export default async function BlogPage() {
 }
 \`\`\`
 
-## 结论
+## Conclusion
 
-Next.js 为构建现代化的 React 应用提供了强大而灵活的工具集。无论是个人项目还是企业级应用，它都能满足各种复杂需求。
+Next.js provides a powerful and flexible toolkit for building modern React applications. Whether it's a personal project or an enterprise-level application, it can meet various complex requirements.
     `,
     coverImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97',
-    tags: ['Next.js', 'React', '前端开发', '教程'],
+    tags: ['Next.js', 'React', 'Frontend Development', 'Tutorial'],
     createdAt: '2023-10-15T08:00:00Z',
     updatedAt: '2023-10-16T10:30:00Z',
   },
   {
     id: '2',
     slug: 'tailwind-css-tips-and-tricks',
-    title: 'Tailwind CSS 使用技巧与窍门',
-    description: '探索使用 Tailwind CSS 的一些高级技巧，让你的开发更加高效。',
+    title: 'Tailwind CSS Tips and Tricks',
+    description: 'Explore some advanced techniques for using Tailwind CSS to make your development more efficient.',
     content: `
-# Tailwind CSS 使用技巧与窍门
+# Tailwind CSS Tips and Tricks
 
-Tailwind CSS 是一个功能强大的 CSS 框架，采用实用优先的方法构建现代网站。下面分享一些使用 Tailwind 的高级技巧。
+Tailwind CSS is a powerful CSS framework that takes a utility-first approach to building modern websites. Here are some advanced tips for using Tailwind.
 
-## 自定义配置
+## Custom Configuration
 
-Tailwind 的一大优势是高度可定制化。通过 tailwind.config.js 文件，你可以定制几乎所有内容：
+One of Tailwind's major advantages is its high customizability. Through the tailwind.config.js file, you can customize almost everything:
 
 \`\`\`js
 // tailwind.config.js
@@ -136,9 +136,9 @@ module.exports = {
 }
 \`\`\`
 
-## 组件提取
+## Component Extraction
 
-虽然 Tailwind 鼓励直接在 HTML 中使用类，但对于重复的模式，提取组件是明智的做法：
+While Tailwind encourages using classes directly in HTML, extracting components for repeated patterns is a wise practice:
 
 \`\`\`jsx
 // Button.js
@@ -161,9 +161,9 @@ export function Button({ children, variant = 'primary', ...props }) {
 }
 \`\`\`
 
-## 使用 @apply 提取常用样式
+## Using @apply to Extract Common Styles
 
-对于经常重复的类组合，可以使用 @apply 指令：
+For frequently repeated class combinations, you can use the @apply directive:
 
 \`\`\`css
 /* globals.css */
@@ -180,41 +180,41 @@ export function Button({ children, variant = 'primary', ...props }) {
 }
 \`\`\`
 
-然后在 HTML 中使用：
+Then use in HTML:
 
 \`\`\`html
 <button class="btn btn-primary">
-  点击我
+  Click Me
 </button>
 \`\`\`
 
-## 响应式设计技巧
+## Responsive Design Tips
 
-Tailwind 的响应式系统非常直观：
+Tailwind's responsive system is very intuitive:
 
 \`\`\`html
 <div class="text-sm md:text-base lg:text-lg">
-  响应式文本大小
+  Responsive text size
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-  响应式网格
+  Responsive grid
 </div>
 \`\`\`
 
-## 深色模式
+## Dark Mode
 
-Tailwind v2.0 引入了内置的深色模式支持：
+Tailwind v2.0 introduced built-in dark mode support:
 
 \`\`\`html
 <div class="bg-white dark:bg-gray-800 text-black dark:text-white">
-  自动适应深色模式
+  Automatically adapts to dark mode
 </div>
 \`\`\`
 
-## 动态内容的样式
+## Styling Dynamic Content
 
-对于动态内容，可以使用模板字符串：
+For dynamic content, you can use template strings:
 
 \`\`\`jsx
 function StatusBadge({ status }) {
@@ -232,27 +232,27 @@ function StatusBadge({ status }) {
 }
 \`\`\`
 
-## 总结
+## Summary
 
-Tailwind CSS 的灵活性和可定制性使其成为现代前端开发的强大工具。通过这些技巧，你可以更高效地使用 Tailwind，创建美观且功能丰富的用户界面。
+Tailwind CSS's flexibility and customizability make it a powerful tool for modern frontend development. With these tips, you can use Tailwind more efficiently to create beautiful and feature-rich user interfaces.
     `,
     coverImage: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d',
-    tags: ['CSS', 'Tailwind CSS', '前端开发', '设计'],
+    tags: ['CSS', 'Tailwind CSS', 'Frontend Development', 'Design'],
     createdAt: '2023-09-20T10:15:00Z',
   },
   {
     id: '3',
     slug: 'type-script-best-practices',
-    title: 'TypeScript 最佳实践',
-    description: '提高 TypeScript 代码质量和可维护性的最佳实践指南。',
+    title: 'TypeScript Best Practices',
+    description: 'Best practices for improving TypeScript code quality and maintainability.',
     content: `
-# TypeScript 最佳实践
+# TypeScript Best Practices
 
-TypeScript 通过为 JavaScript 添加静态类型检查增强了开发体验。以下是一些编写高质量 TypeScript 代码的最佳实践。
+TypeScript enhances the development experience by adding static type checking to JavaScript. Here are some best practices for writing high-quality TypeScript code.
 
-## 1. 使用严格的类型检查
+## 1. Use Strict Type Checking
 
-在 tsconfig.json 中启用严格模式：
+Enable strict mode in tsconfig.json:
 
 \`\`\`json
 {
@@ -262,35 +262,35 @@ TypeScript 通过为 JavaScript 添加静态类型检查增强了开发体验。
 }
 \`\`\`
 
-这将启用多项严格的类型检查，包括 strictNullChecks、noImplicitAny 等。
+This enables multiple strict type checks, including strictNullChecks, noImplicitAny, etc.
 
-## 2. 避免使用 any 类型
+## 2. Avoid Using any Type
 
-\`any\` 类型会绕过类型检查，失去 TypeScript 的主要优势：
+\`any\` type bypasses type checking, losing the main advantage of TypeScript:
 
 \`\`\`typescript
-// 不好的做法
+// Bad practice
 function processData(data: any) {
-  return data.length; // 不安全，data 可能没有 length 属性
+  return data.length; // Unsafe, data may not have length property
 }
 
-// 更好的做法
+// Better practice
 function processData(data: string | string[] | { length: number }) {
-  return data.length; // 类型安全
+  return data.length; // Type-safe
 }
 \`\`\`
 
-## 3. 利用接口描述对象形状
+## 3. Utilize Interface to Describe Object Shape
 
-接口是 TypeScript 中描述对象形状的强大工具：
+Interfaces are a powerful tool for describing object shapes in TypeScript:
 
 \`\`\`typescript
 interface User {
   id: number;
   name: string;
   email: string;
-  active?: boolean; // 可选属性
-  readonly createdAt: Date; // 只读属性
+  active?: boolean; // Optional property
+  readonly createdAt: Date; // Read-only property
 }
 
 function getUserInfo(user: User) {
@@ -298,14 +298,14 @@ function getUserInfo(user: User) {
 }
 \`\`\`
 
-## 4. 使用函数重载表达复杂的函数类型
+## 4. Use Function Overloads to Express Complex Function Types
 
 \`\`\`typescript
-// 函数重载声明
+// Function overload declarations
 function parseValue(value: string): string;
 function parseValue(value: number): number;
 function parseValue(value: boolean): string;
-// 实现
+// Implementation
 function parseValue(value: string | number | boolean): string | number {
   if (typeof value === "number") {
     return value;
@@ -316,12 +316,12 @@ function parseValue(value: string | number | boolean): string | number {
 }
 \`\`\`
 
-## 5. 使用泛型创建可重用组件
+## 5. Use Generics to Create Reusable Components
 
-泛型使你能够创建可重用的组件：
+Generics allow you to create reusable components:
 
 \`\`\`typescript
-// 一个通用的响应包装器
+// A generic response wrapper
 interface ApiResponse<T> {
   data: T;
   status: number;
@@ -329,14 +329,14 @@ interface ApiResponse<T> {
   timestamp: Date;
 }
 
-// 使用泛型获取类型安全的响应
+// Use generics to get type-safe response
 async function fetchUsers(): Promise<ApiResponse<User[]>> {
   const response = await fetch('/api/users');
   return response.json();
 }
 \`\`\`
 
-## 6. 使用类型保护进行运行时类型检查
+## 6. Use Type Guards for Runtime Type Checking
 
 \`\`\`typescript
 interface Bird {
@@ -349,7 +349,7 @@ interface Fish {
   layEggs(): void;
 }
 
-// 类型保护函数
+// Type guard function
 function isFish(pet: Fish | Bird): pet is Fish {
   return (pet as Fish).swim !== undefined;
 }
@@ -363,13 +363,13 @@ function getRandomPet(): Fish | Bird {
 const pet = getRandomPet();
 
 if (isFish(pet)) {
-  pet.swim(); // TypeScript 知道这是一条鱼
+  pet.swim(); // TypeScript knows this is a fish
 } else {
-  pet.fly(); // TypeScript 知道这是一只鸟
+  pet.fly(); // TypeScript knows this is a bird
 }
 \`\`\`
 
-## 7. 使用枚举表示固定值集合
+## 7. Use Enums to Represent Fixed Value Sets
 
 \`\`\`typescript
 enum UserRole {
@@ -389,7 +389,7 @@ function hasEditPermission(user: User): boolean {
 }
 \`\`\`
 
-## 8. 使用命名空间组织相关功能
+## 8. Use Namespaces to Organize Related Features
 
 \`\`\`typescript
 namespace Validation {
@@ -399,7 +399,7 @@ namespace Validation {
 
   export class EmailValidator implements StringValidator {
     isValid(s: string): boolean {
-      // 邮箱验证逻辑
+      // Email validation logic
       return s.includes('@');
     }
   }
@@ -408,7 +408,7 @@ namespace Validation {
 const emailValidator = new Validation.EmailValidator();
 \`\`\`
 
-## 9. 利用索引签名处理动态属性
+## 9. Utilize Index Signatures to Handle Dynamic Properties
 
 \`\`\`typescript
 interface Dictionary<T> {
@@ -416,15 +416,15 @@ interface Dictionary<T> {
 }
 
 const cache: Dictionary<string> = {};
-cache.foo = "bar"; // 允许
+cache.foo = "bar"; // Allowed
 \`\`\`
 
-## 总结
+## Summary
 
-遵循这些最佳实践，可以帮助你编写更加健壮、可维护的 TypeScript 代码。TypeScript 的强大类型系统是一个强大的工具，正确使用可以显著提高代码质量和开发效率。
+Following these best practices can help you write more robust and maintainable TypeScript code. TypeScript's powerful type system is a powerful tool, and using it correctly can significantly improve code quality and development efficiency.
     `,
     coverImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c',
-    tags: ['TypeScript', 'JavaScript', '编程', '最佳实践'],
+    tags: ['TypeScript', 'JavaScript', 'Programming', 'Best Practices'],
     createdAt: '2023-11-05T14:30:00Z',
     updatedAt: '2023-11-07T09:15:00Z',
   },

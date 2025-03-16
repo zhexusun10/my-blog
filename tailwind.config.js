@@ -73,6 +73,10 @@ module.exports = {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
+        },
+        grid: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' },
         }
       },
       animation: {
@@ -80,6 +84,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 6s ease-in-out infinite",
         "rainbow": "rainbow 6s linear infinite",
+        "grid": "grid 20s linear infinite",
       },
       typography: {
         DEFAULT: {
